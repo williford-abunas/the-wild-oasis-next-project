@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import img1 from '@/public/about-1.jpg'
-import img2 from '@/public/about-2.jpg'
+import Image from "next/image";
+import img1 from "@/public/about-1.jpg";
+import img2 from "@/public/about-2.jpg";
 
 export const metadata = {
-  title: 'About',
-}
+  title: "About",
+};
 
 export default function Page() {
   return (
@@ -89,5 +89,5 @@ export default function Page() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,31 +1,50 @@
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
-import {getCabin} from '@/app/_lib/data-service'
-import Image from "next/image"
+import { getCabin, getCabins } from "@/app/_lib/data-service";
+import Image from "next/image";
 
 type paramsProps = {
-  params: { cabinId: string }
-}
+  params: { cabinId: string };
+};
 
-export async function generateMetadata({params}: paramsProps) {
-  const {cabinId} = await params
-  const {name} = await getCabin(cabinId)
+export async function generateMetadata({ params }: paramsProps) {
+  const { cabinId } = params;
+  const { name } = await getCabin(cabinId);
 
   return {
-    title: `Cabin ${name}`
-  }
+    title: `Cabin ${name}`,
+  };
 }
 
-export default async function Page({params} : paramsProps) {
-  const {cabinId} = await params
-  const cabin = await getCabin(cabinId)
-  const { id, name, max_capacity: maxCapacity, regular_price: regularPrice, discount, image, description } =
-    cabin;
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  const ids = cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
+
+  return ids;
+}
+
+export default async function Page({ params }: paramsProps) {
+  const { cabinId } = params;
+  const cabin = await getCabin(cabinId);
+  const {
+    id,
+    name,
+    max_capacity: maxCapacity,
+    regular_price: regularPrice,
+    discount,
+    image,
+    description,
+  } = cabin;
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
       <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
         <div className="relative scale-[1.15] -translate-x-3">
-          <Image src={image} alt={`Cabin ${name}`} className="object-cover" fill/>
+          <Image
+            src={image}
+            alt={`Cabin ${name}`}
+            className="object-cover"
+            fill
+          />
         </div>
 
         <div>

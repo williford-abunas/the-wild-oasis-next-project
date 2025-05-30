@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import bg from '@/public/bg.png'
+import Link from "next/link";
+import Image from "next/image";
+import bg from "@/public/bg.png";
 
 export default function Page() {
   return (
@@ -25,5 +25,5 @@ export default function Page() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

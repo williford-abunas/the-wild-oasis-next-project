@@ -1,20 +1,40 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
-function CabinCard({ cabin }) {
-  const { id, name, max_capacity: maxCapacity, regular_price: regularPrice, discount, image } = cabin;
+type Cabin = {
+  id: number;
+  name: string;
+  max_capacity: number;
+  regular_price: number;
+  discount: number;
+  image: string;
+};
+
+type CabinCardProps = {
+  cabin: Cabin;
+};
+
+function CabinCard({ cabin }: CabinCardProps) {
+  const {
+    id,
+    name,
+    max_capacity: maxCapacity,
+    regular_price: regularPrice,
+    discount,
+    image,
+  } = cabin;
 
   return (
     <div className="flex border-primary-800 border">
       <div className="flex-1 relative">
-      <Image
-        src={image}
-        alt={`Cabin ${name}`}
-        className="flex-1 border-r border-primary-800 object-cover"
-        fill
+        <Image
+          src={image}
+          alt={`Cabin ${name}`}
+          className="flex-1 border-r border-primary-800 object-cover"
+          fill
         />
-        </div>
+      </div>
 
       <div className="flex-grow">
         <div className="pt-5 pb-4 px-7 bg-primary-950">

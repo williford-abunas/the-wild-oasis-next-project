@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import Image from "next/image";
 
-type paramsProps = {
-  params: { cabinId: string };
+type Props = {
+  params: Promise<{ cabinId: string }>;
 };
 
-export async function generateMetadata({ params }: paramsProps) {
-  const { name } = await getCabin(params.cabinId);
+export async function generateMetadata({ params }: Props) {
+  const { cabinId } = await params;
+  const { name } = await getCabin(cabinId);
 
   return {
     title: `Cabin ${name}`,
@@ -21,8 +23,9 @@ export async function generateStaticParams() {
   return ids;
 }
 
-export default async function Page({ params }: paramsProps) {
-  const cabin = await getCabin(params.cabinId);
+export default async function Page({ params }: Props) {
+  const { cabinId } = await params;
+  const cabin = await getCabin(cabinId);
   const {
     id,
     name,

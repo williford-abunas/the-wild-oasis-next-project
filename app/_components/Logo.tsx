@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 function Logo() {
   return (
@@ -9,7 +9,7 @@ function Logo() {
         The Wild Oasis
       </span>
     </Link>
-  )
+  );
 }
 
-export default Logo
+export default Logo;

@@ -7,8 +7,7 @@ type paramsProps = {
 };
 
 export async function generateMetadata({ params }: paramsProps) {
-  const { cabinId } = params;
-  const { name } = await getCabin(cabinId);
+  const { name } = await getCabin(params.cabinId);
 
   return {
     title: `Cabin ${name}`,
@@ -23,8 +22,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: paramsProps) {
-  const { cabinId } = params;
-  const cabin = await getCabin(cabinId);
+  const cabin = await getCabin(params.cabinId);
   const {
     id,
     name,
@@ -37,12 +35,12 @@ export default async function Page({ params }: paramsProps) {
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
-      <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
+      <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24 rounded-md">
         <div className="relative scale-[1.15] -translate-x-3">
           <Image
             src={image}
             alt={`Cabin ${name}`}
-            className="object-cover"
+            className="object-cover rounded-md"
             fill
           />
         </div>

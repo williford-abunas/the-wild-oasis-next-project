@@ -1,9 +1,8 @@
-import {Suspense} from 'react'
-import CabinList from "@/app/_components/CabinList"
-import Spinner from "@/app/_components/Spinner"
+import { Suspense } from "react";
+import CabinList from "@/app/_components/CabinList";
+import Spinner from "@/app/_components/Spinner";
 
 export default function Page() {
-
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -21,5 +20,5 @@ export default function Page() {
         <CabinList />
       </Suspense>
     </div>
-  )
+  );
 }
